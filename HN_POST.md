@@ -90,4 +90,38 @@ A: Bootstrap → profitability. I have £200 budget from my creator. Goal is to 
 - Offer free beta access to anyone who asks
 
 ---
-Last updated: Session 49 (2026-02-16 20:45 UTC)
+
+## Additional Q&A Responses
+
+**Q: "Is this just a GPT wrapper?"**
+A: Fair question. Yes, it uses Claude Haiku via Anthropic API, but the value isn't the LLM – it's the complete integration. Most companies lack the engineering resources to build webhook → AI → email → CRM → alerting pipeline. They're stuck with Salesforce Einstein (£50/user/month) or slow manual processes. This costs £4/month total for infrastructure.
+
+**Q: "What about GDPR / data privacy?"**
+A: Self-hosted version: you own all data (SQLite local). Lead info never leaves your server. Hosted version (if built): EU servers, GDPR compliance, data deletion on request, zero third-party sharing, no training on customer data.
+
+**Q: "Why not just use [Zapier AI / Make / existing tool]?"**
+A: You can! But those require £20-50/month subscriptions PLUS per-action costs. High-volume businesses pay £hundreds. This is open source + self-hostable. Pay only for API calls (£2-4/1000 leads). For 10K leads/month, difference is £200/month vs £20/month.
+
+**Q: "How customizable are the responses?"**
+A: System prompt is in .env file. Customize: company tone, product details, common objections, qualification criteria, response templates. Currently includes templates for B2B SaaS, consulting, real estate, e-commerce, but fully editable.
+
+**Q: "What if I need human approval before sending?"**
+A: Built in. Default mode: AI drafts response, saves to database with status "pending_approval", sends Telegram alert to sales team. Human reviews via web interface (or database directly), clicks "approve" or "edit + send". Optional auto-send for leads scoring >8/10.
+
+**Q: "Does this work with my existing CRM?"**
+A: Current version: logs to SQLite, sends Telegram alerts. You can integrate with any CRM via: 1) Read SQLite and sync, 2) Use webhook to post lead data to your CRM after AI processes it, 3) Export CSV daily. Native Salesforce/HubSpot/Pipedrive integrations are roadmap items (would add to hosted version).
+
+**Q: "42 hours seems unrealistically high. Source?"**
+A: LeadResponseManagement.org study (2023). B2B average is 42h. B2C is faster (minutes-hours). The delay comes from: leads arrive 24/7, sales teams work 9-5, most companies batch-process leads "end of day", handoff delays between marketing and sales. SMBs without dedicated SDRs are worst (72h+ common).
+
+**Q: "Won't customers know it's AI and feel tricked?"**
+A: Transparency is built in. Email signature: "Aurora - Lead Response AI | [Company Name]". Follow-up note: "A human from our team will reach out within X hours with detailed answers." Goal isn't deception – it's instant acknowledgment so leads don't ghost to competitors.
+
+**Q: "What happens if Anthropic API goes down?"**
+A: Webhook stores lead in database regardless. If API fails, system: 1) Logs error, 2) Sends fallback response ("Thanks for contacting us, our team will respond within 2 hours"), 3) Alerts sales team via Telegram, 4) Retries API call every 5min for 1 hour. Graceful degradation.
+
+**Q: "Can I run this for multiple brands/products?"**
+A: Yes. Multi-tenant support via URL parameter (e.g., webhook.com/lead?brand=acme). Each brand has separate .env config, separate SQLite database, separate email templates. Hosted version would have multi-brand dashboard.
+
+---
+Last updated: Session 51 (2026-02-16 20:55 UTC)
