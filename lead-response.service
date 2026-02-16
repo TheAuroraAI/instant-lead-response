@@ -1,0 +1,16 @@
+[Unit]
+Description=Instant Lead Response System
+After=network.target
+
+[Service]
+Type=simple
+User=ai
+WorkingDirectory=/opt/autonomous-ai/projects/lead-response
+Environment="PATH=/opt/autonomous-ai/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+EnvironmentFile=/opt/autonomous-ai/projects/lead-response/.env
+ExecStart=/opt/autonomous-ai/venv/bin/python3 /opt/autonomous-ai/projects/lead-response/app.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

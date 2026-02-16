@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Instant Lead Response - Respond in <60 Seconds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 16px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .stat-box {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-radius: 12px;
+            margin: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .problem {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .problem h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .problem-stat {
+            font-size: 1.3em;
+            margin: 15px 0;
+            padding-left: 20px;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .demo {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .demo h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input, textarea {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .response-message {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .response-message.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+
+        .response-message.error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+
+        .stats-dashboard {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border-top: 4px solid #667eea;
+        }
+
+        .roi-calculator {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .calculator-result {
+            background: #667eea;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>⚡ Instant Lead Response</h1>
+            <p class="subtitle">Respond to every lead in under 60 seconds.<br>While your competitors take 42 hours.</p>
+
+            <div class="stat-box">
+                <div class="stat-number" id="live-avg-response">--</div>
+                <div class="stat-label">Avg Response Time (seconds)</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-number" id="live-total-leads">--</div>
+                <div class="stat-label">Leads Processed</div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-number">9x</div>
+                <div class="stat-label">Higher Conversion Rate</div>
+            </div>
+        </div>
+
+        <div class="problem">
+            <h2>🔥 The Problem</h2>
+            <div class="problem-stat">
+                <strong>42 hours</strong> - Average B2B lead response time
+            </div>
+            <div class="problem-stat">
+                <strong>90%</strong> - Leads lost due to slow responses
+            </div>
+            <div class="problem-stat">
+                <strong>9x</strong> - More likely to convert with <5 minute response (Harvard Business Review)
+            </div>
+            <div class="problem-stat">
+                <strong>391%</strong> - Conversion increase with <1 minute response
+            </div>
+        </div>
+
+        <div class="demo">
+            <h2>🧪 Test It Live</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em;">
+                Fill out the form below. We'll respond to your email in under 60 seconds.
+                <strong>Try us.</strong>
+            </p>
+
+            <form id="lead-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@company.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company *</label>
+                        <input type="text" id="company" name="company" required placeholder="Acme Corp">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone (Optional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+44 7700 900000">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="message">Your Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us what you're interested in..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    ⚡ Test 60-Second Response
+                </button>
+
+                <div class="response-message" id="response-message"></div>
+            </form>
+        </div>
+
+        <div class="stats-dashboard">
+            <h2>📊 Live System Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="dashboard-leads">--</div>
+                    <div class="stat-label">Total Leads</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="dashboard-response">--</div>
+                    <div class="stat-label">Avg Response (ms)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="dashboard-success">--</div>
+                    <div class="stat-label">Email Success Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="roi-calculator">
+            <h2>💰 ROI Calculator</h2>
+            <p style="margin-bottom: 20px;">
+                See how much revenue you're losing to slow response times:
+            </p>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Monthly Leads</label>
+                    <input type="number" id="calc-leads" value="100" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Average Deal Value (£)</label>
+                    <input type="number" id="calc-deal-value" value="5000" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Current Close Rate (%)</label>
+                    <input type="number" id="calc-close-rate" value="10" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <label>Current Response Time (hours)</label>
+                    <input type="number" id="calc-response-time" value="24" min="0">
+                </div>
+            </div>
+
+            <button class="submit-btn" onclick="calculateROI()" style="margin-top: 20px;">
+                Calculate Lost Revenue
+            </button>
+
+            <div class="calculator-result" id="roi-result" style="display: none;">
+                <div style="font-size: 1.2em; margin-bottom: 10px;">You're losing approximately:</div>
+                <div style="font-size: 3em; font-weight: bold;" id="lost-revenue">£0</div>
+                <div style="font-size: 1em; margin-top: 10px;">per month due to slow response times</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Built by Aurora - An Autonomous AI</p>
+            <p style="margin-top: 10px; opacity: 0.8;">
+                Powered by Claude AI • Response times tracked in real-time
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Load stats on page load
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+
+                // Update hero stats
+                document.getElementById('live-avg-response').textContent =
+                    (stats.avg_response_time_ms / 1000).toFixed(1);
+                document.getElementById('live-total-leads').textContent = stats.total_leads;
+
+                // Update dashboard stats
+                document.getElementById('dashboard-leads').textContent = stats.total_leads;
+                document.getElementById('dashboard-response').textContent =
+                    stats.avg_response_time_ms.toLocaleString();
+                document.getElementById('dashboard-success').textContent =
+                    stats.email_success_rate.toFixed(1) + '%';
+            } catch (error) {
+                console.error('Failed to load stats:', error);
+            }
+        }
+
+        // Form submission
+        document.getElementById('lead-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            const responseMsg = document.getElementById('response-message');
+
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Processing...';
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                company: document.getElementById('company').value,
+                phone: document.getElementById('phone').value || null,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const startTime = Date.now();
+                const response = await fetch('/api/submit-lead', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                const totalTime = Date.now() - startTime;
+
+                if (response.ok) {
+                    responseMsg.className = 'response-message success';
+                    responseMsg.innerHTML = `
+                        <strong>✅ Success!</strong><br>
+                        We responded to <strong>${formData.email}</strong> in
+                        <strong>${(result.response_time_ms / 1000).toFixed(2)} seconds</strong>.<br>
+                        Check your inbox!
+                    `;
+                    responseMsg.style.display = 'block';
+
+                    // Reset form
+                    document.getElementById('lead-form').reset();
+
+                    // Reload stats
+                    setTimeout(loadStats, 1000);
+                } else {
+                    throw new Error(result.detail || 'Submission failed');
+                }
+            } catch (error) {
+                responseMsg.className = 'response-message error';
+                responseMsg.innerHTML = `
+                    <strong>❌ Error:</strong><br>
+                    ${error.message}
+                `;
+                responseMsg.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '⚡ Test 60-Second Response';
+            }
+        });
+
+        // ROI Calculator
+        function calculateROI() {
+            const leads = parseInt(document.getElementById('calc-leads').value);
+            const dealValue = parseInt(document.getElementById('calc-deal-value').value);
+            const closeRate = parseFloat(document.getElementById('calc-close-rate').value) / 100;
+            const responseTime = parseInt(document.getElementById('calc-response-time').value);
+
+            // Calculate current monthly revenue
+            const currentRevenue = leads * dealValue * closeRate;
+
+            // Calculate improved conversion with fast response
+            // Research shows 9x improvement with <5min response
+            // We'll use conservative 3x improvement for 24h+ response times
+            let improvementFactor = 1.0;
+            if (responseTime > 24) {
+                improvementFactor = 3.0;
+            } else if (responseTime > 6) {
+                improvementFactor = 2.0;
+            } else if (responseTime > 1) {
+                improvementFactor = 1.5;
+            }
+
+            const improvedRevenue = leads * dealValue * (closeRate * improvementFactor);
+            const lostRevenue = improvedRevenue - currentRevenue;
+
+            // Display result
+            document.getElementById('lost-revenue').textContent =
+                '£' + Math.round(lostRevenue).toLocaleString();
+            document.getElementById('roi-result').style.display = 'block';
+        }
+
+        // Load stats every 30 seconds
+        loadStats();
+        setInterval(loadStats, 30000);
+    </script>
+</body>
+</html>
