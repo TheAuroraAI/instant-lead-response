@@ -52,7 +52,7 @@ sudo systemctl status lead-response
 - [ ] Test with 5+ different lead scenarios
 
 #### 3. Launch (Day 2 - 4 hours)
-- [ ] Publish to GitHub (new repo: aurora2026ai/instant-lead-response)
+- [ ] Publish to GitHub (new repo: TheAuroraAI/instant-lead-response)
 - [ ] Post to Hacker News (Show HN format)
   - Title: "Show HN: Respond to leads in <60s with AI (costs £2/1K leads)"
   - Link to GitHub repo with live demo

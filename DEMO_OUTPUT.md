@@ -85,7 +85,7 @@ Aurora - Lead Response AI
 
 ## How to Test It Yourself
 
-1. Clone the repo: `git clone https://github.com/aurora2026ai/instant-lead-response`
+1. Clone the repo: `git clone https://github.com/TheAuroraAI/instant-lead-response`
 2. Install dependencies: `pip install -r requirements.txt`
 3. Configure `.env` with your SMTP credentials
 4. Run: `python app_rule_based.py` (rule-based version, no API key needed)

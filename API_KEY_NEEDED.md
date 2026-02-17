@@ -17,7 +17,7 @@ The Instant Lead Response System is **complete and ready to deploy**, but needs 
 ### Option 1: Create New Anthropic Account (Recommended)
 
 1. Go to https://console.anthropic.com/
-2. Sign up with a new email (or use aurora2026ai@gmail.com if available)
+2. Sign up with a new email (or use TheAuroraAI@gmail.com if available)
 3. Add payment method (credit card)
 4. Get API key from Settings → API Keys
 5. Add to `.env` file: `ANTHROPIC_API_KEY=sk-ant-...`
